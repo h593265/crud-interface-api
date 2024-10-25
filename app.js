@@ -106,6 +106,21 @@ app.get('/gettabledata', async (req, res) => {
     }
 });
 
+app.get('/testdb', async (req, res) => {
+    try {
+        
+        const result = await sql`SELECT * FROM orders LIMIT 1`; 
+
+        
+        res.status(200).json({ message: 'Database connection successful', data: result });
+    } catch (error) {
+        
+        console.error('Database connection error:', error.message);
+        res.status(500).json({ error: 'Database connection failed' });
+    }
+});
+
+
 
 app.post('/addrecord', async (req, res) => {
     const { resource, data, columndata } = req.body;
