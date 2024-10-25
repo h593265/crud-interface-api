@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const sql = require('./db');
 const app = express();
+require('dotenv').config();
 const port = process.env.PORT || 5000;
 
 
@@ -9,12 +10,13 @@ const port = process.env.PORT || 5000;
 app.use(express.json());
 
 const corsOptions = {
-    origin: process.env.ORIGIN
-
-
-}
-
+    origin: process.env.ORIGIN, 
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type"],
+};
 console.log(corsOptions)
+
+app.use(cors(corsOptions));
 
 app.use((req, res, next) => {
     if (!req.secure) {
@@ -25,7 +27,7 @@ app.use((req, res, next) => {
 
 const allowedTables =  process.env.TABLE_WHITELIST
 
-app.use(cors(corsOptions));
+
 
 app.get('/gettabledata', async (req, res) => {
     const { resource, limit, offset, search, column } = req.query;
