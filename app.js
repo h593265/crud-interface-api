@@ -15,6 +15,7 @@ const corsOptions = {
     allowedHeaders: ["Content-Type"],
 };
 console.log(corsOptions)
+console.log(sql)
 
 app.use(cors(corsOptions));
 
