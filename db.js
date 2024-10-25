@@ -7,7 +7,9 @@ const sql = postgres({
     database             : process.env.PG_DATABASE,            
     username             : process.env.PG_USERNAME,           
     password             : process.env.PG_PASSWORD,           
-   
+    ssl: {
+      rejectUnauthorized: false, 
+  },
   })
 
  
