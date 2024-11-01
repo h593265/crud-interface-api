@@ -296,7 +296,7 @@ app.put('/editRecord', async (req, res) => {
     const { data } = req.body
 
    
-    const allowedTables = ['orders', 'selskap', 'orderlines'];
+   
 
     if (!allowedTables.includes(resource)) {
         
